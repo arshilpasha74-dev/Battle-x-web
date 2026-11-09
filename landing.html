@@ -1,0 +1,655 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090d16">
+<title>BATTLE x - Esports Tournament</title>
+
+<style>
+:root {
+  --bg: #090d16;
+  --card: #111827;
+  --accent: #ff5b35;
+  --text: #ffffff;
+  --muted: #9ca3af;
+  --border: rgba(255,255,255,.09);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+
+.container {
+  width: min(1100px, 90%);
+  margin: auto;
+}
+
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(9,13,22,.85);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar {
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.logo-icon {
+  background: var(--accent);
+  padding: 7px 10px;
+  border-radius: 9px;
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--muted);
+  font-size: 14px;
+  transition: .2s;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+/* HERO */
+.hero {
+  min-height: 680px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 130px 0 90px;
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(255,91,53,.13), transparent 55%),
+    linear-gradient(180deg,#0d1422,#090d16);
+}
+
+.hero-content { max-width: 760px; margin: auto; }
+
+.tag {
+  display: inline-block;
+  border: 1px solid rgba(255,91,53,.35);
+  color: #ff967d;
+  background: rgba(255,91,53,.08);
+  padding: 7px 15px;
+  border-radius: 30px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-size: clamp(42px,8vw,78px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -3px;
+}
+
+.hero h1 span { color: var(--accent); }
+
+.hero p {
+  color: var(--muted);
+  font-size: 17px;
+  max-width: 570px;
+  margin: 23px auto 30px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 14px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: .25s;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 8px 25px rgba(255,91,53,.17);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  background: #ff704f;
+}
+
+.btn-outline {
+  border: 1px solid var(--border);
+  margin-left: 10px;
+}
+
+.btn-outline:hover { border-color: var(--accent); }
+
+/* COMMON */
+section { padding: 85px 0; }
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.section-heading h2 {
+  font-size: clamp(27px,4vw,38px);
+  font-weight: 800;
+}
+
+.section-heading p {
+  color: var(--muted);
+  margin-top: 9px;
+}
+
+/* FEATURES */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 18px;
+}
+
+.feature-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 26px;
+  border-radius: 12px;
+  transition: .25s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255,91,53,.45);
+}
+
+.feature-icon {
+  width: 45px;
+  height: 45px;
+  background: rgba(255,91,53,.12);
+  color: var(--accent);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 19px;
+}
+
+.feature-icon svg { width: 23px; height: 23px; }
+
+.feature-card h3 { font-size: 17px; margin-bottom: 8px; }
+
+.feature-card p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* SINGLE BANNER AD */
+.ad-section { padding: 5px 0 65px; }
+
+.ad-banner {
+  min-height: 90px;
+  background: #111827;
+  border: 1px dashed #394354;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #64748b;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+/* SCREENSHOT */
+.screenshot-section { padding-top: 25px; }
+
+.screenshot-card {
+  max-width: 370px;
+  margin: auto;
+  padding: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.3);
+  overflow: hidden;
+}
+
+.screenshot-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform .3s;
+}
+
+.screenshot-card:hover img { transform: scale(1.025); }
+
+/* DOWNLOAD */
+.download-section {
+  text-align: center;
+  background: radial-gradient(ellipse at center,rgba(255,91,53,.1),transparent 65%);
+}
+
+.download-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 48px 20px;
+}
+
+.download-box h2 { font-size: 32px; }
+
+.download-box p {
+  color: var(--muted);
+  margin: 12px auto 25px;
+  max-width: 500px;
+}
+
+/* SOCIAL */
+.social-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 13px;
+}
+
+.social-btn {
+  width: 49px;
+  height: 49px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--card);
+  transition: .2s;
+}
+
+.social-btn:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.social-btn svg { width: 21px; height: 21px; }
+
+/* SUPPORT */
+.support-box {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+  padding: 35px 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.support-box p {
+  color: var(--muted);
+  margin: 10px 0 22px;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 25px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* MOBILE */
+@media(max-width:768px) {
+  .menu-btn { display: block; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    background: #111827;
+    padding: 22px;
+    flex-direction: column;
+    gap: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-links.active { display: flex; }
+
+  .features-grid { grid-template-columns: repeat(2,1fr); }
+
+  .hero { min-height: 600px; }
+
+  .hero h1 { letter-spacing: -2px; }
+
+  .btn-outline { margin: 12px 0 0; }
+}
+
+@media(max-width:480px) {
+  .features-grid { grid-template-columns: 1fr; }
+  .download-box h2 { font-size: 26px; }
+  section { padding: 65px 0; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container navbar">
+    <a href="#home" class="logo">
+      <span class="logo-icon">B</span>
+      BATTLE X
+    </a>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#download">Download</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="container hero-content">
+    <span class="tag">NEXT LEVEL ESPORTS EXPERIENCE</span>
+
+    <h1>PLAY. COMPETE.<br><span>DOMINATE.</span></h1>
+
+    <p>
+      Join exciting esports tournaments, compete with skilled players
+      and experience competitive gaming with BATTLE X.
+    </p>
+
+    <a href="#download" class="btn btn-primary">↓ Download App</a>
+    <a href="#features" class="btn btn-outline">Explore Features</a>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Why Choose Us?</h2>
+      <p>Everything you need for competitive gaming.</p>
+    </div>
+
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="17" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
+        </div>
+        <h3>Daily Tournaments</h3>
+        <p>Discover exciting tournaments and compete regularly.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+          </svg>
+        </div>
+        <h3>Fast Matchmaking</h3>
+        <p>Find your next match with a simple joining experience.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 3v18h18M7 14l4-4 4 3 5-7"/>
+          </svg>
+        </div>
+        <h3>Live Leaderboard</h3>
+        <p>Track player rankings and tournament performance.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="4" y="10" width="16" height="11" rx="2"/>
+            <path d="M8 10V7a4 4 0 018 0v3"/>
+          </svg>
+        </div>
+        <h3>Secure Login</h3>
+        <p>Enjoy a convenient account experience with secure authentication.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 3l2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3z"/>
+          </svg>
+        </div>
+        <h3>Smooth Experience</h3>
+        <p>Clean interface designed for quick and easy navigation.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SINGLE BANNER AD: Paste Adsterra Banner Script Here -->
+<section class="ad-section">
+  <div class="container">
+    <div class="ad-banner">
+      BANNER ADVERTISEMENT
+    </div>
+  </div>
+</section>
+
+<!-- SCREENSHOT: Replace image URL with your app screenshot -->
+<section class="screenshot-section" id="screenshot">
+  <div class="container">
+    <div class="section-heading">
+      <h2>App Preview</h2>
+      <p>Take a look at the BATTLE x experience.</p>
+    </div>
+
+    <div class="screenshot-card">
+      <img
+        src="https://placehold.co/600x1100/111827/ff5b35?text=BATTLE+ARINA+APP+SCREENSHOT"
+        alt="BATTLE X app screenshot">
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="download-section" id="download">
+  <div class="container">
+    <div class="download-box">
+      <h2>Ready to Enter the Arena?</h2>
+      <p>
+        Download BATTLE X APK and get started with your
+        esports tournament experience.
+      </p>
+
+      <a href="#" id="downloadBtn" class="btn btn-primary"
+         download="KnightApp.apk">
+        ↓ Download APK
+      </a>
+
+      <p style="font-size:11px;margin-top:17px;">
+        Android Application | APK Download
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL LINKS -->
+<section>
+  <div class="container">
+    <div class="section-heading">
+      <h2>Join Our Community</h2>
+      <p>Follow us and stay connected.</p>
+    </div>
+
+    <div class="social-links">
+
+      <a class="social-btn" id="youtubeBtn" href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M23 7a3 3 0 00-2-2C19 4 12 4 12 4s-7 0-9 1a3 3 0 00-2 2 31 31 0 000 10 3 3 0 002 2c2 1 9 1 9 1s7 0 9-1a3 3 0 002-2 31 31 0 000-10zM10 15V9l6 3z"/>
+        </svg>
+      </a>
+
+      <a class="social-btn" id="telegramBtn" href="#" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M22 3L2 11l7 3 3 7 4-5 5-13zM9 14l9-7-7 9z"/>
+        </svg>
+      </a>
+
+      <a class="social-btn" id="whatsappBtn" href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.7.9-.3.1-.5 0a6 6 0 01-1.8-1.1 7 7 0 01-1.2-1.5c-.1-.2 0-.3.1-.4l.4-.5c.1-.2.1-.3 0-.5l-.7-1.6c-.2-.4-.4-.3-.5-.3h-.5c-.2 0-.4.1-.6.3a2.5 2.5 0 00-.8 1.9 4 4 0 00.9 2.1 9 9 0 003.6 3.2 4 4 0 002.5.5 2 2 0 001.4-.9 1.8 1.8 0 00.1-1c-.1-.1-.2-.2-.4-.3z"/>
+        </svg>
+      </a>
+
+      <a class="social-btn" id="instagramBtn" href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M17.5 6.5h.01"/>
+        </svg>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section id="contact">
+  <div class="container">
+    <div class="support-box">
+      <h2>Need Help?</h2>
+      <p>Have a question or facing an issue? Contact our support team.</p>
+
+      <a href="#" id="supportBtn" class="btn btn-primary">
+        ✉ Contact Support
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © <span id="year"></span> BATTLE ARINA. All Rights Reserved.
+  </div>
+</footer>
+
+<script>
+// ==================================
+// APK LINK: Paste your Catbox direct link here
+// ==================================
+const apkLink = "PASTE_CATBOX_DIRECT_LINK_HERE";
+
+// SOCIAL LINKS: Replace with your actual links
+const youtubeLink = "PASTE_YOUTUBE_LINK";
+const telegramLink = "PASTE_TELEGRAM_LINK";
+const whatsappLink = "PASTE_WHATSAPP_LINK";
+const instagramLink = "PASTE_INSTAGRAM_LINK";
+
+// EMAIL: Replace with your support email
+const supportEmail = "support@example.com";
+
+// Attach APK download link dynamically
+const downloadBtn = document.getElementById("downloadBtn");
+
+downloadBtn.href = apkLink;
+
+// SOCIAL LINK ATTACHMENT
+document.getElementById("youtubeBtn").href = youtubeLink;
+document.getElementById("telegramBtn").href = telegramLink;
+document.getElementById("whatsappBtn").href = whatsappLink;
+document.getElementById("instagramBtn").href = instagramLink;
+
+// SUPPORT EMAIL
+document.getElementById("supportBtn").href =
+  "mailto:" + supportEmail;
+
+// MOBILE MENU
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+  menuBtn.textContent =
+    navLinks.classList.contains("active") ? "✕" : "☰";
+});
+
+// Close menu after selecting a link
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("active");
+    menuBtn.textContent = "☰";
+  });
+});
+
+// AUTOMATIC COPYRIGHT YEAR
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+// Prevent accidental placeholder downloads
+downloadBtn.addEventListener("click", function(e) {
+  if (
+    !apkLink ||
+    apkLink === "PASTE_CATBOX_DIRECT_LINK_HERE" ||
+    !/^https?:\/\//i.test(apkLink)
+  ) {
+    e.preventDefault();
+    alert("Please add your Catbox direct APK link first.");
+  }
+});
+</script>
+
+</body>
+</html>
